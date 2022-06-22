@@ -1,0 +1,28 @@
+@use 'src/variables' as global_var;
+
+::ng-deep snack-bar-container {
+  max-width: 50vw !important;
+  background: linear-gradient(#000, #000) padding-box, linear-gradient(180deg, #7615f5 15%, #cc2bf6 55%) border-box !important;
+  border: 3px solid transparent !important;
+  border-radius: global_var.$border-radius-size !important;
+}
+
+.snack {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+
+  & .message {
+    color: #fff;
+    margin-right: 20px;
+  }
+
+  & .action {
+    cursor: pointer;
+    font-weight: bolder;
+    background-image: linear-gradient(-180deg, #7615f5 15%, #cc2bf6 85%);
+    background-clip: text;
+    color: transparent;
+  }
+}

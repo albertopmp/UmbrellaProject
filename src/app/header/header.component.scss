@@ -1,0 +1,71 @@
+@use 'src/variables' as global_var;
+
+.mat-toolbar {
+  width: calc(100% - 2 * global_var.$margin-between-elements);
+  height: global_var.$header-height;
+  margin-left: global_var.$margin-between-elements;
+  margin-bottom: global_var.$margin-between-elements;
+  border-radius: global_var.$border-radius-size;
+  background-color: #000;
+  color: #fff;
+
+  position: relative;
+  top: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+$base-rotation: 25deg !default;
+
+.umbrella-title {
+  display: flex;
+  align-items: center;
+  user-select: none;
+
+  .umbrella-text {
+    font-size: 35px;
+    font-weight: bolder;
+    background-image: linear-gradient(-180deg, #7615f5 15%, #cc2bf6 85%);
+    background-clip: text;
+    color: transparent;
+  }
+
+  img {
+    margin-left: 8px;
+    height: 30px;
+    transform: rotate($base-rotation);
+  }
+
+  &:hover {
+    cursor: pointer;
+    & > img {
+      animation: tilt-shaking 1.5s infinite;
+    }
+  }
+}
+
+a img {
+  width: 20px;
+  height: 20px;
+  user-select: none;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate($base-rotation + 10) scale(1.15);
+  }
+  25% {
+    transform: rotate($base-rotation) scale(0.95);
+  }
+  50% {
+    transform: rotate($base-rotation - 10) scale(1.15);
+  }
+  75% {
+    transform: rotate($base-rotation) scale(0.95);
+  }
+  100% {
+    transform: rotate($base-rotation + 15) scale(1.15);
+  }
+}

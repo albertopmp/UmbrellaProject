@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Courgette';
+  src: local('Courgette'), url(./assets/fonts/Courgette/Courgette-Regular.ttf) format('truetype');
+}
+
+html,
+body {
+  height: 100%;
+}
+
+* {
+  font-family: 'Courgette', cursive;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #7615f5 15%, #cc2bf6 55%);
+}
+
