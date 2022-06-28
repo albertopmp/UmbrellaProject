@@ -17,12 +17,11 @@
   flex: 1 1 auto;
 }
 
-$base-rotation: 25deg !default;
-
 .umbrella-title {
   display: flex;
   align-items: center;
   user-select: none;
+  cursor: pointer;
 
   .umbrella-text {
     font-size: 35px;
@@ -35,11 +34,10 @@ $base-rotation: 25deg !default;
   img {
     margin-left: 8px;
     height: 30px;
-    transform: rotate($base-rotation);
+    transform: rotate(global_var.$base-rotation);
   }
 
   &:hover {
-    cursor: pointer;
     & > img {
       animation: tilt-shaking 1.5s infinite;
     }
@@ -49,23 +47,4 @@ $base-rotation: 25deg !default;
 a img {
   width: 20px;
   height: 20px;
-  user-select: none;
-}
-
-@keyframes tilt-shaking {
-  0% {
-    transform: rotate($base-rotation + 10) scale(1.15);
-  }
-  25% {
-    transform: rotate($base-rotation) scale(0.95);
-  }
-  50% {
-    transform: rotate($base-rotation - 10) scale(1.15);
-  }
-  75% {
-    transform: rotate($base-rotation) scale(0.95);
-  }
-  100% {
-    transform: rotate($base-rotation + 15) scale(1.15);
-  }
 }

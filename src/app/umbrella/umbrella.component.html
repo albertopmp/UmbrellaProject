@@ -1,7 +1,33 @@
-<div class="umbrella-info">
-    <svg viewBox="0 0 300 300" perserveAspectRatio="xMinYMid">
-        <circle cx="50%" cy="50%" r="125" />
-        <circle class="c1 ok" cx="50%" cy="50%" r="125" />
-        <circle class="c2 ok" cx="50%" cy="50%" r="125" />
-    </svg>
+<div class="umbrella-div">
+  <div class="umbrella-info">
+    <div class="umbrella-animation">
+      <img src="assets/img/umbrella-img/umbrella-error.png" class="error">
+    </div>
+    <div class="umbrella-message error">
+      Don't forget your umbrella, you'll need it!
+      <!-- The weather is going to be nice, enjoy it! -->
+    </div>
+  </div>
+  <div class="subscription-div">
+    <div class="subscription-message">
+      Would you like to receive daily reminders from Umbre??a
+      <img src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img">?<br>
+      More than <span> {{ totalSubscribers }} </span> have already subscribed!
+    </div>
+    <div class="subscription-input">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl">
+
+        <mat-icon matSuffix matTooltip="Subscribe now!" matTooltipShowDelay="200" matTooltipPosition="right"
+          matTooltipClass="subscription-tooltip" (click)="openSnackBar()">send</mat-icon>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
 </div>

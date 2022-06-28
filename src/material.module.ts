@@ -29,7 +29,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   exports: [
@@ -64,7 +66,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatAutocompleteModule,
     MatGridListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatBadgeModule,
+    ReactiveFormsModule
   ]
 })
 export class MaterialModule {}

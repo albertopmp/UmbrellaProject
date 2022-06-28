@@ -9,6 +9,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class AppComponent {
   hasBackdrop = false;
+  hideBadge = false;
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
@@ -26,5 +28,9 @@ export class AppComponent {
         this.sidenav.open();
       }
     });
+  }
+
+  toggleBadgeVisibility() {
+    this.hideBadge = true;
   }
 }

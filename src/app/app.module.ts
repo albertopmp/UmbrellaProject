@@ -7,9 +7,18 @@ import { MaterialModule } from 'src/material.module';
 import { HeaderComponent } from './header/header.component';
 import { UmbrellaComponent } from './umbrella/umbrella.component';
 import { ConfirmSnackbarComponent } from './confirm-snackbar/confirm-snackbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, UmbrellaComponent, ConfirmSnackbarComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    UmbrellaComponent,
+    ConfirmSnackbarComponent,
+    ProfileComponent,
+    AboutComponent
+  ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule],
   providers: [],
   bootstrap: [AppComponent]
