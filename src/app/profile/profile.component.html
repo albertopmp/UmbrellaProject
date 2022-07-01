@@ -1,22 +1,24 @@
 <div class="profile-div">
     <div class="list-div">
         <mat-list>
-            <mat-list-item (click)="onListItemClick('cloud')">
+            <mat-list-item #cloud (click)="onListItemClick('cloud')"
+                [ngClass]="{'active-item': visibilityMap.get('cloud')}">
                 <mat-icon mat-list-icon>cloud</mat-icon>
                 <div mat-line>Cloud Journey</div>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="onListItemClick('edu')">
+            <mat-list-item #edu (click)="onListItemClick('edu')" [ngClass]="{'active-item': visibilityMap.get('edu')}">
                 <mat-icon mat-list-icon>school</mat-icon>
                 <div mat-line>Education</div>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="onListItemClick('exp')">
+            <mat-list-item #exp (click)="onListItemClick('exp')" [ngClass]="{'active-item': visibilityMap.get('exp')}">
                 <mat-icon mat-list-icon>work</mat-icon>
                 <div mat-line>Experience</div>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="onListItemClick('certs')">
+            <mat-list-item #certs (click)="onListItemClick('certs')"
+                [ngClass]="{'active-item': visibilityMap.get('certs')}">
                 <mat-icon mat-list-icon>badge</mat-icon>
                 <div mat-line>Certifications</div>
             </mat-list-item>

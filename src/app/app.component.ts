@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,19 @@ export class AppComponent {
   hasBackdrop = false;
   hideBadge = false;
 
+  routerEvents$;
+  currentRoute = '';
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private chgDetect: ChangeDetectorRef) {}
+  constructor(private router: Router, private observer: BreakpointObserver, private chgDetect: ChangeDetectorRef) {
+    this.routerEvents$ = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.currentRoute = event.url;
+      }
+    });
+  }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -29,6 +39,10 @@ export class AppComponent {
       }
       this.chgDetect.detectChanges();
     });
+  }
+
+  ngOnDestroy() {
+    this.routerEvents$.unsubscribe();
   }
 
   toggleBadgeVisibility() {

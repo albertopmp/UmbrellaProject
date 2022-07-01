@@ -24,14 +24,15 @@ a {
     color: #fff;
     height: 40px;
     border-radius: global_var.$border-radius-size;
+    cursor: pointer;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    &.active-item,
     &:hover {
       background-color: rgba(255, 255, 255, 0.3);
-      cursor: pointer;
     }
   }
 

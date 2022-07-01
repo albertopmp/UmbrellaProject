@@ -8,17 +8,19 @@
     <h4 class="designation">Software Engineer</h4>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button umbrella-button" routerLink="umbrella">
+    <button mat-button class="menu-button umbrella-button" [ngClass]="{'active-page': currentRoute === '/umbrella'}"
+      routerLink="umbrella">
       <span>
         Umbre??a
         <img src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img">
       </span>
     </button>
-    <button mat-button class="menu-button" routerLink="about">
+    <button mat-button class="menu-button" [ngClass]="{'active-page': currentRoute === '/about'}" routerLink="about">
       <span> About </span>
       <mat-icon> info </mat-icon>
     </button>
-    <button mat-button class="menu-button" (click)="toggleBadgeVisibility()" routerLink="profile">
+    <button mat-button class="menu-button" (click)="toggleBadgeVisibility()"
+      [ngClass]="{'active-page': currentRoute === '/profile'}" routerLink="profile">
       <span> Profile </span>
       <mat-icon matBadge="!" [matBadgeHidden]="hideBadge" matBadgeSize="small"> person </mat-icon>
     </button>
