@@ -6,8 +6,10 @@ on:
       - master
 
 jobs:
-  deploy:
+  front-end:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./front-end
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -23,9 +25,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
-
-      - name: Access front
-        run: cd ./front-end
 
       - name: Install dependencies
         run: npm install
