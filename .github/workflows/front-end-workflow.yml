@@ -40,5 +40,5 @@ jobs:
 
       - name: Deploy
         if: success()
-        run: aws s3 sync ./dist/umbrella-project s3://umbrella-project-albertopmp.comexport AWS_PAGER=""; aws cloudfront create-invalidation --distribution-id E1FUTCY77NGY4S --paths '/*';
+        run: aws s3 sync ./dist/umbrella-project s3://umbrella-project-albertopmp; AWS_PAGER=""; aws cloudfront create-invalidation --distribution-id E1FUTCY77NGY4S --paths '/*';
         working-directory: ${{ env.workdir }}
