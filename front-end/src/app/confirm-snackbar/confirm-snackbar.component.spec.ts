@@ -1,4 +1,6 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBarModule, MatSnackBarRef } from '@angular/material/snack-bar';
 
 import { ConfirmSnackbarComponent } from './confirm-snackbar.component';
 
@@ -8,7 +10,15 @@ describe('ConfirmSnackbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConfirmSnackbarComponent]
+      declarations: [ConfirmSnackbarComponent],
+      imports: [MatSnackBarModule],
+      providers: [
+        {
+          provide: MatSnackBarRef,
+          useValue: {}
+        }
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 

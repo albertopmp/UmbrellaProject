@@ -39,6 +39,28 @@ body {
     -webkit-user-select: none;
     -webkit-user-drag: none;
   }
+
+  & .error-404 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      font-size: 50px;
+      margin-bottom: 30px;
+
+      & img.inline-umbrella-img {
+        position: relative;
+        top: 3px;
+        width: 40px;
+        height: 40px;
+        transform: rotate(global_var.$base-rotation);
+      }
+    }
+  }
 }
 
 @keyframes tilt-shaking {
