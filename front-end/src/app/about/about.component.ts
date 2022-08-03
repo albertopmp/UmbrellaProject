@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
@@ -7,13 +7,13 @@ import { MatAccordion } from '@angular/material/expansion';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  panelOpenState = false;
+  @ViewChild('accordion') accordion: MatAccordion;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  collapseAll(accordion: MatAccordion) {
-    accordion.closeAll();
+  collapseAll() {
+    this.accordion.closeAll();
   }
 }

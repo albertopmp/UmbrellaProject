@@ -59,6 +59,10 @@
   background-color: #000;
   border-radius: global_var.$border-radius-size !important;
 
+  &.mat-expansion-panel-spacing {
+    margin: 0px !important;
+  }
+
   &:last-child,
   &:last-child.mat-expanded,
   &:last-child .mat-expansion-panel-body {
@@ -91,7 +95,8 @@
     background-color: #000;
 
     & .mat-expansion-panel-body {
-      background: linear-gradient(#000, #000) padding-box, linear-gradient(135deg, #7615f5 15%, #cc2bf6 55%) border-box !important;
+      background: linear-gradient(#000, #000) padding-box,
+        linear-gradient(135deg, #7615f5 15%, #cc2bf6 55%) border-box !important;
       border: 3px solid transparent !important;
       border-radius: global_var.$border-radius-size !important;
       color: #fff;

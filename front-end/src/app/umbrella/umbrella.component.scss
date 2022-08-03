@@ -54,7 +54,7 @@
           background: linear-gradient(to top, #00ff00 50%, transparent 0);
           background-size: 100% 200%;
           background-position: top;
-          animation: makeItfadeIn 3s forwards ease-in-out;
+          animation: makeItfadeIn 1.5s forwards ease-in-out;
           border-color: #00ff00;
         }
         &.error {

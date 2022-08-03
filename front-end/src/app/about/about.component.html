@@ -4,12 +4,12 @@
     <img src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img">
   </span>
   <div class=" img-outline" matTooltip="Collapse All" matTooltipShowDelay="500" matTooltipPosition="above"
-    matTooltipClass="collapse-tooltip" (click)="collapseAll(acc)">
+    matTooltipClass="collapse-tooltip" (click)="collapseAll()">
     <img src="assets/img/about-img/collapse.png">
   </div>
 </div>
 <div class="info-div">
-  <mat-accordion multi #acc=matAccordion>
+  <mat-accordion multi #accordion=matAccordion>
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>
