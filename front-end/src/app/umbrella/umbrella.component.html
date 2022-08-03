@@ -1,5 +1,5 @@
 <div class="umbrella-div">
-  <div class="umbrella-info">
+  <div class="umbrella-info" *ngIf="umbrellaData != undefined">
     <div class="umbrella-animation">
       <img src="assets/img/umbrella-img/umbrella-error.png" [ngClass]="umbrellaData.umbrella ? 'error' : 'ok'">
     </div>
