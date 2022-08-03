@@ -9,6 +9,7 @@ import { UmbrellaComponent } from './umbrella/umbrella.component';
 import { ConfirmSnackbarComponent } from './confirm-snackbar/confirm-snackbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,13 @@ import { AboutComponent } from './about/about.component';
     ProfileComponent,
     AboutComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

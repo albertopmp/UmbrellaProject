@@ -1,11 +1,11 @@
 <div class="umbrella-div">
   <div class="umbrella-info">
     <div class="umbrella-animation">
-      <img src="assets/img/umbrella-img/umbrella-error.png" class="error">
+      <img src="assets/img/umbrella-img/umbrella-error.png" [ngClass]="umbrellaData.umbrella ? 'error' : 'ok'">
     </div>
-    <div class="umbrella-message error">
-      Don't forget your umbrella, you'll need it!
-      <!-- The weather is going to be nice, enjoy it! -->
+    <div class="umbrella-message" [ngClass]="umbrellaData.umbrella ? 'error' : 'ok'">
+      <p *ngIf="umbrellaData.umbrella">Don't forget your umbrella, you'll need it!</p>
+      <p *ngIf="!umbrellaData.umbrella">The weather is going to be nice, enjoy it!</p>
     </div>
   </div>
   <div class="subscription-div">

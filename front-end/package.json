@@ -2,6 +2,7 @@
   "name": "umbrella-project",
   "version": "0.0.0",
   "scripts": {
+    "api": "json-server src/assets/mocks/json-server/db.json --routes src/assets/mocks/json-server/routes.json",
     "start": "ng serve",
     "build:prod": "ng build --configuration production",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "json-server": "^0.17.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

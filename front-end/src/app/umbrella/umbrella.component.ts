@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmSnackbarComponent } from '../confirm-snackbar/confirm-snackbar.component';
+import { UmbrellaData } from '../model/umbrella-data';
+import { UmbrellaService } from '../service/umbrella.service';
 
 @Component({
   selector: 'app-umbrella',
@@ -9,15 +11,23 @@ import { ConfirmSnackbarComponent } from '../confirm-snackbar/confirm-snackbar.c
   styleUrls: ['./umbrella.component.scss']
 })
 export class UmbrellaComponent implements OnInit {
+  mncpCode = '15078';
   totalSubscribers = 1976;
+  umbrellaData: UmbrellaData;
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private _snackBar: MatSnackBar, private umbrellaService: UmbrellaService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.umbrellaService.getUmbrellaBy(this.mncpCode).subscribe((response) => {
+      this.umbrellaData = UmbrellaData.deserialize(JSON.parse(response.body));
+    });
+  }
 
   openSnackBar() {
-    this._snackBar.openFromComponent(ConfirmSnackbarComponent, { horizontalPosition: 'start' });
+    if (this.emailFormControl.valid) {
+      this._snackBar.openFromComponent(ConfirmSnackbarComponent, { horizontalPosition: 'start' });
+    }
   }
 }

@@ -1,0 +1,7 @@
+{
+  "umbrella": {
+    "statusCode": 200,
+    "body": "{\"umbrella\": false, \"rain_prob\": 0}"
+  }
+}
+
