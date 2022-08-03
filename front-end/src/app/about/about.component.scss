@@ -82,8 +82,10 @@
     background: linear-gradient(135deg, #7615f5 15%, #cc2bf6 55%) !important;
     font-size: 16px;
 
-    &:hover {
-      opacity: 0.8;
+    & .mat-expansion-indicator {
+      display: flex;
+      align-self: center;
+      justify-content: center;
     }
 
     & mat-panel-title {
