@@ -54,14 +54,6 @@ a {
   align-items: center;
   justify-content: center;
 
-  & .mat-divider {
-    border-top: 5px dotted #ccc;
-    margin: auto;
-    width: 60%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-
   & .cloud-div {
     width: 80%;
     color: #fff;
@@ -120,6 +112,13 @@ a {
         font-family: 'Opens Sans', Arial, Helvetica, sans-serif;
       }
     }
+  }
+}
+
+.cert-link {
+  text-decoration: none;
+  &:hover > * {
+    background-color: rgba(255, 255, 255, 0.3);
   }
 }
 

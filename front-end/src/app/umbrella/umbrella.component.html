@@ -1,18 +1,18 @@
 <div class="umbrella-div">
-  <div class="umbrella-info" *ngIf="umbrellaData != undefined">
+  <div class="umbrella-info">
     <div class="umbrella-animation">
-      <img src="assets/img/umbrella-img/umbrella-error.png" [ngClass]="umbrellaData.umbrella ? 'error' : 'ok'">
+      <img src="assets/img/umbrella-img/umbrella-error.png" [ngClass]="umbrellaData?.umbrella ? 'error' : 'ok'">
     </div>
-    <div class="umbrella-message" [ngClass]="umbrellaData.umbrella ? 'error' : 'ok'">
-      <p *ngIf="umbrellaData.umbrella">Don't forget your umbrella, you'll need it!</p>
-      <p *ngIf="!umbrellaData.umbrella">The weather is going to be nice, enjoy it!</p>
+    <div class="umbrella-message" [ngClass]="umbrellaData?.umbrella ? 'error' : 'ok'">
+      <p *ngIf="umbrellaData?.umbrella">Don't forget your umbrella, you'll need it!</p>
+      <p *ngIf="!umbrellaData?.umbrella">The weather is going to be nice, enjoy it!</p>
     </div>
   </div>
   <div class="subscription-div">
     <div class="subscription-message">
       Would you like to receive daily reminders from Umbre??a
       <img src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img">?<br>
-      More than <span> {{ totalSubscribers }} </span> have already subscribed!
+      More than <span> {{ totalSubscribers }} people</span> have already subscribed!
     </div>
     <div class="subscription-input">
       <mat-form-field appearance="outline">
@@ -20,7 +20,7 @@
         <input type="email" matInput [formControl]="emailFormControl">
 
         <mat-icon matSuffix matTooltip="Subscribe now!" matTooltipShowDelay="200" matTooltipPosition="right"
-          matTooltipClass="subscription-tooltip" (click)="openSnackBar()">send</mat-icon>
+          matTooltipClass="subscription-tooltip" (click)="subscribeToTopic()">send</mat-icon>
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Please enter a valid email address
         </mat-error>

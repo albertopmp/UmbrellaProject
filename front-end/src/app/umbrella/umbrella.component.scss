@@ -49,6 +49,8 @@
         border-radius: 50%;
         border: 4px solid;
         box-sizing: border-box;
+        background-color: #000;
+        border-color: #000;
 
         &.ok {
           background: linear-gradient(to top, #00ff00 50%, transparent 0);
