@@ -20,15 +20,18 @@
           </span>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p> The purpose of this project was to get hands-on experience with AWS Services. As I was learning to become AWS
+      <p>
+        The purpose of this project was to get hands-on experience with AWS Services. As I was learning to become AWS
         Cloud Practitioner Certified, I wanted to get my hands dirty and apply all the things I'd been learning during
-        the preparation of the certificate. </p>
+        the preparation of the certificate
+      </p>
 
-      <p>I saw that many people have taken the <a href="https://cloudresumechallenge.dev/" target="_blank"> Cloud Resume
-          Challenge</a>
-        as a way to advance their cloud career. Nevertheless, I wanted to do something different and develop a project
-        of my own, solving along the way an issue that I'd been facing since I was just a little boy: always
-        forgetting my umbrella when it rains!</p>
+      <p>
+        I saw that many people have taken the <a href="https://cloudresumechallenge.dev/" target="_blank"> Cloud Resume
+          Challenge</a> as a way to advance their cloud career. Nevertheless, I wanted to do something different and
+        develop a project of my own, solving along the way an issue that I'd been facing since I was just a little boy:
+        always forgetting my umbrella when it rains!
+      </p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -37,7 +40,18 @@
           How It Works
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>This is the primary content of the panel.</p>
+      <p>
+        <span>Umbre??a <img src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img">
+        </span> shows you whether you'll need to take your umbrella or not, just as simple as that! Additionally, you
+        can subscribe with your email to recevie daily reminders so you don't leave your umbrella at home
+      </p>
+
+      <p>
+        In this first iteration of the development I kept simple the functionality, <b>because I wanted to focus on
+          what really mattered here, the use of AWS Services.</b> Right now <span>Umbre??a <img
+            src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img"> </span> only
+        works for my city, Santiago de Compostela, and daily reminders are sent at 6:30 AM (Madrid)
+      </p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -46,23 +60,27 @@
           Architecture
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>With the purpose of making the most out of this project regarding learning AWS, I'll try to make use of as
-        many services as I can. I'm sure that there would be better solutions or services that are a better fit;
-        however, that's not what I'm intending with this project</p>
+      <p>
+        In order to design the architecture I used the knowledge acquired throughout the certification process and I
+        took the time to thoroughly read the documentation of many services. The latter was really helpful both for the
+        desing and the exam, as I learned the intricacies of some services and how they worked at low-level
+      </p>
+      <p>
+        I also want to highlight that I've only made use of <a href="https://aws.amazon.com/free" target="_blank">AWS
+          Free Tier</a>, as I wanted this project to be accessible without incurring any costs (Except for the costs of
+        the domain name - Route 53)
+      </p>
 
-      <p>I'll only make use of <a href="https://aws.amazon.com/free" target="_blank">AWS
-          Free Tier</a>, as I want this project to be accessible without incurring any costs. </p>
-
-      <img src="assets/img/gatr.png">
+      <img src="assets/img/about-img/architecture.png" width="100%" style="margin-top: 20px;">
     </mat-expansion-panel>
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Involved Services
+          Configuration of AWS Services
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <img src="assets/img/about-img/architecture.png" width="100%">
+      PONER UN PDF CON TODO LO QUE FUI ANOTANDO
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -71,11 +89,13 @@
           Next Steps
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>The following list contains features that could be improve the overall experience of Umbre??a
-        <img src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img">
+      <p>The following list contains features that could be improve the overall experience of <span>Umbre??a
+          <img src="assets/img/umbrella-img/umbrella.png" alt="umbrella-logo" class="inline-umbrella-img"> </span>
       </p>
       <ul>
+        <li>Let users specify the place where they live</li>
         <li>Let users specify their Time Zone and Notification time</li>
+        <li>Create more appealing emails -> SES</li>
       </ul>
     </mat-expansion-panel>
 

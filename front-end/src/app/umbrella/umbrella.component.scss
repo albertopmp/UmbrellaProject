@@ -26,10 +26,10 @@
       text-align: center;
       margin-top: 20px;
 
-      &.ok {
+      &.take {
         color: #00ff00;
       }
-      &.error {
+      &.leave {
         color: #f72119;
       }
     }
@@ -52,14 +52,14 @@
         background-color: #000;
         border-color: #000;
 
-        &.ok {
+        &.take {
           background: linear-gradient(to top, #00ff00 50%, transparent 0);
           background-size: 100% 200%;
           background-position: top;
           animation: makeItfadeIn 1.5s forwards ease-in-out;
           border-color: #00ff00;
         }
-        &.error {
+        &.leave {
           background: linear-gradient(to top, #f72119 50%, transparent 0);
           background-size: 100% 200%;
           background-position: top;

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.umbrella-project-albertopmp.com',
+  apiUrl: 'http://localhost:3000',
   refreshTime: 60000
 };
 
