@@ -66,7 +66,7 @@ export class UmbrellaComponent implements OnInit, OnDestroy {
       this.umbrellaService.subscribeToTopicBy(this.emailFormControl.value).subscribe({
         next: () => {
           this.showSpinner = false;
-          this.openSnackbar;
+          this.openSnackbar();
         }
       });
     }
