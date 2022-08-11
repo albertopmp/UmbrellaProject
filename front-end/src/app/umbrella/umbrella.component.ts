@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ConfirmSnackbarComponent } from '../confirm-snackbar/confirm-snackbar.component';
 import { UmbrellaData } from '../model/umbrella-data';
@@ -18,6 +18,7 @@ export class UmbrellaComponent implements OnInit, OnDestroy {
 
   mncpCode = '15078';
   totalSubscribers = 0;
+  showSpinner = false;
   umbrellaData: UmbrellaData;
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
@@ -61,8 +62,10 @@ export class UmbrellaComponent implements OnInit, OnDestroy {
 
   subscribeToTopic() {
     if (this.emailFormControl.valid) {
+      this.showSpinner = true;
       this.umbrellaService.subscribeToTopicBy(this.emailFormControl.value).subscribe({
         next: () => {
+          this.showSpinner = false;
           this.openSnackbar;
         }
       });

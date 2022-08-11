@@ -1,12 +1,19 @@
+<div *ngIf="this.showSpinner" class="center-spinner">
+  <mat-progress-spinner color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
 <div class="umbrella-div">
   <div class="umbrella-info">
     <div class="umbrella-animation">
+      <img style="visibility: hidden;" *ngIf="umbrellaData?.umbrella">
       <img src="assets/img/umbrella-img/takeUmbrella.png" class="take" *ngIf="umbrellaData?.umbrella">
-      <img src="assets/img/umbrella-img/leaveUmbrella.png" class="leave" *ngIf="!(umbrellaData?.umbrella)">
+      <img src="assets/img/umbrella-img/leaveUmbrella.png" class="leave" *ngIf="umbrellaData?.umbrella == false">
     </div>
     <div class="umbrella-message" [ngClass]="umbrellaData?.umbrella ? 'take' : 'leave'">
+      <p *ngIf="!umbrellaData" style="visibility: hidden;">----------------------------</p>
       <p *ngIf="umbrellaData?.umbrella">Don't forget your umbrella, you'll need it!</p>
-      <p *ngIf="!umbrellaData?.umbrella">The weather is going to be nice, enjoy it!</p>
+      <p *ngIf="umbrellaData?.umbrella == false">The weather is going to be nice, enjoy it!</p>
     </div>
   </div>
   <div class="subscription-div">
