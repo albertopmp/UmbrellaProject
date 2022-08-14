@@ -1,0 +1,77 @@
+1 - https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html
+
+	NOTE: It's really important that the name servers for your domain and the name servers for your hosted zone match. If the name servers don't match, you might need to update your domain name servers to match those listed under your hosted zone!!
+	
+2 - https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-cloudfront-walkthrough.html
+
+	Cert: https://aws.amazon.com/es/blogs/security/easier-certificate-validation-using-dns-with-aws-certificate-manager/
+		MUST BE IN US_EAST_1 IN ORDER TO BE COMPATIBLE WITH CLOUDFRONT
+		(o use a certificate in AWS Certificate Manager (ACM) to require HTTPS between viewers and CloudFront, make sure you request (or import) the certificate in the US East (N. Virginia) Region (us-east-1). -> https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html)
+
+	HTTPS: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-viewers-to-cloudfront.html
+
+	When using CloudFront for serving the content there is no need to keep the bucket with the root domain name with the Static website hosting option. In addition, we don't need the www. bucket anymore, as we can specify other domain names (CNAMES) for the CloudFront distribution. Furthermore, we can activate the Block All Public Access option again and delete the current bucket policy -> Now we need to add an OAI (otherwise we won't be able to access our content)
+
+3 - https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html -> OAI
+	To ensure that your users access your files using only CloudFront URLs, regardless of whether the URLs are signed, do the following:
+
+	1. Create an origin access identity, which is a special CloudFront user, and associate the origin access identity with your distribution. You associate the origin access identity with origins, so that you can secure all or just some of your Amazon S3 content. You can also create an origin access identity and add it to your distribution when you create the distribution. For more information, see Creating a CloudFront OAI and adding it to your distribution.
+	
+	2. Change the permissions either on your Amazon S3 bucket or on the files in your bucket so that only the origin access identity has read permission. When viewers access your Amazon S3 files through CloudFront, the CloudFront origin access identity gets the files on their behalf. If viewers request files directly by using Amazon S3 URLs, they’re denied access. The origin access identity has permission to access files in your Amazon S3 bucket, but viewers don’t. For more information, see Granting the OAI permission to read files in your Amazon S3 bucket.
+
+	-> Invalidations are needed when developing so we can immediately see the changes that we have implemented
+
+4 - As I was not willing to build, deploy and invalidate each time I wanted to make a change, I decided to create a CI/CD workflow using Github Actions. With this workflow, each time I push to the master branch of my repo, Github Actions builds the Angular application, deploys the app to S3 (deleting the useless objects from previous builds) and then invalidates the CloudFront Cache
+	-> Use Secrets, Workdir changes and add <createInvalidation> permission to IAM user github-actions
+
+	-> Another problem was browsers caching the content, so despite CloudFront cache was invalidated, the changes were not shown to the user inmediately
+
+	https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function  
+		-> In this tutorial, the function that we created updates the security headers in a CloudFront response using a Lambda@Edge Function
+		(Make sure that you’re in the US-East-1 (N. Virginia) Region (us-east-1). You must be in this Region to create Lambda@Edge functions)
+
+
+5 - Then I needed to create a LambdaFunction for the backend. I chose to integrate it with API Gateaway, so I could make requests from the frontend ->  Because it's a proxy integration, you can change the Lambda function implementation at any time without needing to redeploy your API.
+	(https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html)
+	-> This LambdaFunction calls the AEMET API
+	-> In addtion, I wanted to use my custom domain name for the API, instead of the endpoint https://9jf2w8har7.execute-api.eu-west-1.amazonaws.com/test/umbrella/{mncp}
+		:: https://www.readysetcloud.io/blog/allen.helton/adding-a-custom-domain-to-aws-api-gateway/
+		(I used a TYPE A record instead of CNAME)
+		(Remember to change mapped stage from the API Gateaway)
+
+	-> Finally, I could call https://api.umbrella-project-albertopmp.com/umbrella/{mncp} and get back {"umbre??a": false}
+
+
+6 -  Next I needed to implement a Periodic call to the aforementioned LambdaFunction and publish to an SNS topic
+
+	6.1 -  First I configured EventBridge to emit a periodic event (using a cron task) at 4am GMT, as I want Umbre??a to send notifications al 6am Madrid (GMT +2). The event is emitted to a LambdaFunction
+	https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/RunLambdaSchedule.html
+
+	6.2 -  Then I had to tweak the UmbrellaAEMET_SQS to change its behaviour depending on the trigger
+		  ** API Gateawsay -> Attack AEMET API
+		
+	 	  ** EventBridge -> Attack AEMET API + Call Umbrella_SQS_To_SNS in order to publish to SNS
+			As calling a Lambda from another is an anti-pattern (https://docs.aws.amazon.com/lambda/latest/operatorguide/functions-calling-functions.html), I opted to create an SQS queue which became the trigger of the function
+
+			USE PRINCIPLE OF LEAST PRIVILEGE!! (UmbrellaAEMET_SQS_Role)
+				sqs:SendMessage
+
+	6.3 - Create Umbrella_SQS_To_SNS so that it is triggered by new publications in SQS PeriodicUmbrellaQueue and send notifications to sns PeriodicUmbrellaNotifications
+		USE PRINCIPLE OF LEAST PRIVILEGE!! (Umbrella_SQS_To_SNS_Role)
+			sqs:ReceiveMessage
+			sqs:DeleteMessage
+			sqs:GetQueueAttributes
+				sns:SendMessage
+
+
+		I STRUGGLED WITH SQS PUBLICATIONS BUT I SOLVED IT BY CHECKING THE LOGS IN CLOUDWATCH!
+
+		SQS AS LAMBDA TRIGGER: !!!!
+		Lambda polls the queue and invokes your Lambda function synchronously with an event that contains queue messages. Lambda reads messages in batches and invokes your function once for each batch. When your function successfully processes a batch, Lambda deletes its messages from the queue. The following example shows an event for a batch of two messages.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+You are still billed for all requests that are handled by S3 when the request passed first through CloudFront when CloudFront does not serve the object from cache.
+
+
+
