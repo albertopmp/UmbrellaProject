@@ -29,3 +29,16 @@ variable "lambda_count_sns_topic_subs_arn" {
   type = string
 } # Value comes from main.tf
 
+
+# For domain-config.ts
+variable "root_domain" {
+  description = "The domain name to associate with the API"
+  type        = string
+  default     = "umbrella-project-albertopmp.com"
+}
+
+variable "subdomain" {
+  description = "The subdomain for the API"
+  type        = string
+  default     = "api.umbrella-project-albertopmp.com"
+}

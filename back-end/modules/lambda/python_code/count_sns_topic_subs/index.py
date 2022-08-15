@@ -1,12 +1,12 @@
 import boto3, os
 
 
-# def handle_origin(origin):
-#     allowedOrigin = "https://www.umbrella-project-albertopmp.com"
-#     if origin == "https://umbrella-project-albertopmp.com":
-#         allowedOrigin = origin
+def handle_origin(origin):
+    allowedOrigin = "https://www.umbrella-project-albertopmp.com"
+    if origin == "https://umbrella-project-albertopmp.com":
+        allowedOrigin = origin
 
-#     return allowedOrigin
+    return allowedOrigin
 
 
 def lambda_handler(event, context):
@@ -17,7 +17,7 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "headers": {
             "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Origin": "*",  # handle_origin(event["headers"]["origin"]),
+            "Access-Control-Allow-Origin": handle_origin(event["headers"]["origin"]),
             "Vary": "Origin",
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
         },

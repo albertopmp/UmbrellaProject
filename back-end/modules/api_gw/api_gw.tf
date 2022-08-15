@@ -7,7 +7,6 @@ resource "aws_api_gateway_rest_api" "umbrella_api" {
 }
 
 #  count_sns_topic_subs
-
 resource "aws_api_gateway_resource" "subscribers" {
   rest_api_id = aws_api_gateway_rest_api.umbrella_api.id
   parent_id   = aws_api_gateway_rest_api.umbrella_api.root_resource_id
@@ -38,6 +37,8 @@ resource "aws_api_gateway_integration" "count_sns_topic_subs_integration" {
   uri                     = var.lambda_count_sns_topic_subs_arn
 }
 
+
+# Deployment
 resource "aws_api_gateway_deployment" "api_gw_deployment" {
   rest_api_id = aws_api_gateway_rest_api.umbrella_api.id
   triggers = {
@@ -45,6 +46,9 @@ resource "aws_api_gateway_deployment" "api_gw_deployment" {
       aws_api_gateway_resource.subscribers.id,
       aws_api_gateway_method.count_sns_topic_subs.id,
       aws_api_gateway_integration.count_sns_topic_subs_integration.id
+      # ...
+      # Add more resources, methods and integrations
+      # ...
     ]))
   }
 }
