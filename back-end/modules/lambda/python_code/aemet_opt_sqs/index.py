@@ -71,9 +71,8 @@ def lambda_handler(event, context):
         rain_prob = get_rain_prob(weather_data)
         message = build_message(rain_prob)
 
-        if "resources" in event:
-            if event["resources"][0] == os.environ["RULE_ARN"]:
-                send_message_sqs(message)
+        if "resources" in event:  # From EventBridge
+            send_message_sqs(message)
 
         return {
             "statusCode": 200,

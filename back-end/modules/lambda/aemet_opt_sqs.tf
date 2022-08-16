@@ -15,21 +15,21 @@ resource "aws_iam_role" "aemet_opt_sqs" {
   })
 }
 
-resource "aws_iam_policy" "get_sns_topic_attributes" {
-  name        = "UmbrellaGetSNSTopicAttributes"
+resource "aws_iam_policy" "publish_to_sqs" {
+  name        = "UmbrellaPublishToSQS"
   path        = "/"
-  description = "AWS IAM Policy for managing UmbrellaCountSNSTopicSubs"
+  description = "AWS IAM Policy for managing UmbrellaAEMET_OPT_SQS"
 
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
+        Effect = "Allow"
         Action = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents"
-        ],
-        Effect   = "Allow"
+        ]
         Resource = "arn:aws:logs:*:*:*"
       },
       {
@@ -41,27 +41,30 @@ resource "aws_iam_policy" "get_sns_topic_attributes" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
-  role       = aws_iam_role.count_sns_topic_subs.name
-  policy_arn = aws_iam_policy.get_sns_topic_attributes.arn
+resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_aemet_opt_sqs_role" {
+  role       = aws_iam_role.aemet_opt_sqs.name
+  policy_arn = aws_iam_policy.publish_to_sqs.arn
 }
 
-data "archive_file" "zip_python_code" {
+data "archive_file" "zip_python_code_aemet_opt_sqs" {
   type        = "zip"
-  source_dir  = "${path.module}/python_code/count_sns_topic_subs"
-  output_path = "${var.zip_route}/count_sns_topic_subs.zip"
+  source_dir  = "${path.module}/python_code/aemet_opt_sqs"
+  output_path = "${path.module}/${var.zip_route}/aemet_opt_sqs.zip"
 }
 
-resource "aws_lambda_function" "count_sns_topic_subs" {
-  filename      = "${var.zip_route}/count_sns_topic_subs.zip"
-  function_name = "UmbrellaCountSNSTopicSubs"
-  role          = aws_iam_role.count_sns_topic_subs.arn
+resource "aws_lambda_function" "aemet_opt_sqs" {
+  filename      = "${path.module}/${var.zip_route}/aemet_opt_sqs.zip"
+  function_name = "UmbrellaAEMET_OPT_SQS"
+  role          = aws_iam_role.aemet_opt_sqs.arn
   handler       = "index.lambda_handler"
   runtime       = "python3.9"
-  depends_on    = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role]
+  depends_on    = [aws_iam_role_policy_attachment.attach_iam_policy_to_aemet_opt_sqs_role]
+
   environment {
     variables = {
-      TOPIC_ARN = var.umbrella_sns_topic_arn
+      API_KEY            = var.aemet_api_key,
+      QUEUE_URL          = var.umbrella_sqs_queue_url,
+      UMBRELLA_THRESHOLD = var.umbrella_threshold
     }
   }
 }

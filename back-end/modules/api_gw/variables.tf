@@ -21,15 +21,6 @@ variable "api_gw_account_id" {
   type        = string
 } # Value comes from main.tf
 
-variable "lambda_count_sns_topic_subs_name" {
-  type = string
-} # Value comes from main.tf
-
-variable "lambda_count_sns_topic_subs_arn" {
-  type = string
-} # Value comes from main.tf
-
-
 # For domain-config.ts
 variable "root_domain" {
   description = "The domain name to associate with the API"
@@ -42,3 +33,20 @@ variable "subdomain" {
   type        = string
   default     = "api.umbrella-project-albertopmp.com"
 }
+
+# For lambda functions
+variable "lambda_count_sns_topic_subs_name" {
+  type = string
+} # Value comes from main.tf
+
+variable "lambda_count_sns_topic_subs_invoke_arn" {
+  type = string
+} # Value comes from main.tf
+
+variable "lambda_aemet_opt_sqs_name" {
+  type = string
+} # Value comes from main.tf
+
+variable "lambda_aemet_opt_sqs_invoke_arn" {
+  type = string
+} # Value comes from main.tf
