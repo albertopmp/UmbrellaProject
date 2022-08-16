@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 .aws/*
+**/zip
 
 # IDEs and editors
 .idea/
@@ -40,7 +41,6 @@ Icon
 
 # # Local .terraform directories
 .terraform*
-*.zip
 
 # .tfstate files
 *.tfstate
