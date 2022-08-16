@@ -26,6 +26,8 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+
+      - name: Export variables
         run: export TF_VAR_account_id=${{ secrets.ACCOUNT_ID }}
 
       - name: Terraform Format
