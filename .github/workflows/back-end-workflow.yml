@@ -26,6 +26,7 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+        run: export TF_VAR_account_id=${{ secrets.ACCOUNT_ID }}
 
       - name: Terraform Format
         run: terraform fmt -check
@@ -48,7 +49,5 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: |
-          export TF_VAR_account_id=${{ secrets.ACCOUNT_ID }}
-          terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false
         working-directory: ${{ env.workdir }}
