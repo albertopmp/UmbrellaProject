@@ -32,20 +32,20 @@ jobs:
       - name: Terraform Init
         run: terraform init
         env:
-          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
+          TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
 
       - name: Terraform Validate
         run: terraform validate
         env:
-          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
+          TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
 
       - name: Terraform Plan
         id: plan
         run: terraform plan
         env:
-          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
+          TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
 
       - name: Terraform Plan Status
@@ -55,5 +55,5 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve -input=false
         env:
-          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
+          TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
