@@ -1,2 +1,0 @@
-# export TF_VAR_account_id=095467007348 -> SECRET IN GITHUB ACTIONS
-account_id = "095467007348"
