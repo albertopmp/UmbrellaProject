@@ -6,7 +6,6 @@ on:
       - master
     paths:
       - "back-end/**"
-      - "!back-end/.docs/*"
 
 jobs:
   back-end:
@@ -27,23 +26,26 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Export variables
-        run: export TF_VAR_account_id=${{ secrets.ACCOUNT_ID }}
-
       - name: Terraform Format
         run: terraform fmt -check
 
       - name: Terraform Init
         run: terraform init
+        env:
+          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
 
       - name: Terraform Validate
         run: terraform validate
+        env:
+          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
 
       - name: Terraform Plan
         id: plan
         run: terraform plan
+        env:
+          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
 
       - name: Terraform Plan Status
@@ -52,4 +54,6 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -input=false
+        env:
+          TF_VAR_env: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
