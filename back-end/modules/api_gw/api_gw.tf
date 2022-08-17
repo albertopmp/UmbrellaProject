@@ -49,7 +49,7 @@ resource "aws_api_gateway_integration" "count_sns_topic_subs_integration" {
 resource "aws_api_gateway_resource" "subscribers_id" {
   rest_api_id = aws_api_gateway_rest_api.umbrella_api.id
   parent_id   = aws_api_gateway_resource.subscribers.id
-  path_part   = "{id}"
+  path_part   = "{sub_id}"
 }
 
 resource "aws_api_gateway_method" "subscribe_sns_topic" {
@@ -59,7 +59,7 @@ resource "aws_api_gateway_method" "subscribe_sns_topic" {
   authorization = "NONE"
 
   request_parameters = {
-    "method.request.path.id" = true
+    "method.request.path.sub_id" = true
   }
 }
 
@@ -73,14 +73,14 @@ resource "aws_lambda_permission" "execute_subscribe_sns_topic" {
 
 resource "aws_api_gateway_integration" "subscribe_sns_topic_integration" {
   rest_api_id             = aws_api_gateway_rest_api.umbrella_api.id
-  resource_id             = aws_api_gateway_resource.subscribers_count.id
-  http_method             = aws_api_gateway_method.count_sns_topic_subs.http_method
+  resource_id             = aws_api_gateway_resource.subscribers_id.id
+  http_method             = aws_api_gateway_method.subscribe_sns_topic.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = var.lambda_count_sns_topic_subs_invoke_arn
+  uri                     = var.lambda_subscribe_sns_topic_invoke_arn
 
   request_parameters = {
-    "integration.request.path.id" = "method.request.path.id"
+    "integration.request.path.id" = "method.request.path.sub_id"
   }
 }
 
