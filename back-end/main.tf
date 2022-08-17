@@ -56,6 +56,9 @@ module "api_gw" {
   lambda_count_sns_topic_subs_name       = module.lambda.count_sns_topic_subs_name
   lambda_count_sns_topic_subs_invoke_arn = module.lambda.count_sns_topic_subs_invoke_arn
 
+  lambda_subscribe_sns_topic_name       = module.lambda.subscribe_sns_topic_name
+  lambda_subscribe_sns_topic_invoke_arn = module.lambda.subscribe_sns_topic_invoke_arn
+
   depends_on = [
     module.lambda
   ]

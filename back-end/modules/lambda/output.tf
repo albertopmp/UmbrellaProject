@@ -20,4 +20,13 @@ output "count_sns_topic_subs_name" {
   value = aws_lambda_function.count_sns_topic_subs.function_name
 }
 
+# subscribe_sns_topic
+output "subscribe_sns_topic_invoke_arn" {
+  value = aws_lambda_function.subscribe_sns_topic.invoke_arn
+}
+
+output "subscribe_sns_topic_name" {
+  value = aws_lambda_function.subscribe_sns_topic.function_name
+}
+
 

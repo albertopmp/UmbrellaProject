@@ -1,14 +1,15 @@
-name: UmbrellaProject back-end
+name: UmbrellaProject destroy infra
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - "back-end/**"
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Environment"
+        required: true
+        default: "dev"
 
 jobs:
-  back-end:
+  destroy:
     runs-on: ubuntu-latest
     env:
       workdir: ./back-end
@@ -26,10 +27,6 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform Format
-        run: terraform fmt -check
-        working-directory: ${{ env.workdir }}
-
       - name: Terraform Init
         run: terraform init
         working-directory: ${{ env.workdir }}
@@ -37,24 +34,22 @@ jobs:
       - name: AWS Copy Plan
         run: aws s3 cp s3://umbrella-project-albertopmp/back-end/terraform.tfstate terraform.tfstate
         working-directory: ${{ env.workdir }}
-        continue-on-error: true # Inc ase infra doesn't exist
 
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan
+      - name: Show Destroy plan
+        run: terraform plan -destroy
+        env:
+          TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
+        working-directory: ${{ env.workdir }}
+        continue-on-error: true
+
+      - name: Destroy resources
+        id: destroy
+        run: terraform destroy -auto-approve
         env:
           TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
         working-directory: ${{ env.workdir }}
 
-      - name: Terraform Apply
-        id: apply
-        if: steps.plan.outcome == 'success'
-        run: terraform apply -auto-approve -input=false
-        env:
-          TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
-        working-directory: ${{ env.workdir }}
-
-      - name: AWS Save Plan
-        if: steps.apply.outcome == 'success'
-        run: aws s3 cp terraform.tfstate s3://umbrella-project-albertopmp/back-end/terraform.tfstate
+      - name: Delete Plan
+        if: steps.destroy.outcome == 'success'
+        run: aws s3 rm s3://umbrella-project-albertopmp/back-end/terraform.tfstate
         working-directory: ${{ env.workdir }}

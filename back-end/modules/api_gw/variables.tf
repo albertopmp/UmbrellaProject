@@ -50,3 +50,11 @@ variable "lambda_aemet_opt_sqs_name" {
 variable "lambda_aemet_opt_sqs_invoke_arn" {
   type = string
 } # Value comes from main.tf
+
+variable "lambda_subscribe_sns_topic_name" {
+  type = string
+} # Value comes from main.tf
+
+variable "lambda_subscribe_sns_topic_invoke_arn" {
+  type = string
+} # Value comes from main.tf
