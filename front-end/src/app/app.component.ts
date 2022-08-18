@@ -18,7 +18,11 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private router: Router, private observer: BreakpointObserver, private chgDetect: ChangeDetectorRef) {
+  constructor(
+    private router: Router,
+    private observer: BreakpointObserver,
+    private chgDetect: ChangeDetectorRef
+  ) {
     this.routerEvents$ = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;

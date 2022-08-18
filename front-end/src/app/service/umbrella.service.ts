@@ -20,12 +20,12 @@ export class UmbrellaService {
   }
 
   getTotalSubscribers(): Observable<number> {
-    const url = `${this.umbrellaUrl}/subscribers`;
+    const url = `${this.umbrellaUrl}/subscribers/count`;
     return this.http.get(url, { responseType: 'text' }).pipe(map((value) => Number(value)));
   }
 
   subscribeToTopicBy(email: string): Observable<any> {
-    const url = `${this.umbrellaUrl}/subscribe`;
+    const url = `${this.umbrellaUrl}/subscribers/${email}`;
     return this.http.post<void>(url, email).pipe(
       catchError(() => {
         throw new Error('Unable to subscribe');
