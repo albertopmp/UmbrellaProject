@@ -7,3 +7,5 @@ I saw that many people have taken the [Cloud Resume Challenge](https://cloudresu
 > ## Moreover, I want this project to become a tool for consolidating the knowledge that I'll acquire during future training and certifications through hands-on practice.
 
 Please, check out the `.docs` directory if you want to know more about how *Umbre??a* was developed :)
+
+![Architecture Diagram](https://github.com/albertopmp/UmbrellaProject/blob/master/front-end/src/assets/img/about-img/architecture.png)
