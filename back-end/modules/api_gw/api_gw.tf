@@ -68,7 +68,7 @@ resource "aws_lambda_permission" "execute_subscribe_sns_topic" {
   action        = "lambda:InvokeFunction"
   function_name = var.lambda_subscribe_sns_topic_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "arn:aws:execute-api:${var.api_gw_region}:${var.api_gw_account_id}:${aws_api_gateway_rest_api.umbrella_api.id}/*/${aws_api_gateway_method.subscribe_sns_topics.http_method}${aws_api_gateway_resource.subscribers_id.path}"
+  source_arn    = "arn:aws:execute-api:${var.api_gw_region}:${var.api_gw_account_id}:${aws_api_gateway_rest_api.umbrella_api.id}/*/${aws_api_gateway_method.subscribe_sns_topic.http_method}${aws_api_gateway_resource.subscribers_id.path}"
 }
 
 resource "aws_api_gateway_integration" "subscribe_sns_topic_integration" {
