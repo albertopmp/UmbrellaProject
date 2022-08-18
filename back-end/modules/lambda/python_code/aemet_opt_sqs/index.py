@@ -32,6 +32,7 @@ def handle_origin(event):
     default_headers = {
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Origin": "https://www.umbrella-project-albertopmp.com",
+        "Vary": "Origin",
         "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
     }
 
