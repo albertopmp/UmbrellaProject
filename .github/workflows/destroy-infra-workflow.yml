@@ -35,13 +35,6 @@ jobs:
         run: aws s3 cp s3://umbrella-project-albertopmp/back-end/terraform.tfstate terraform.tfstate
         working-directory: ${{ env.workdir }}
 
-      - name: Show Destroy plan
-        run: terraform plan -destroy
-        env:
-          TF_VAR_account_id: ${{ secrets.ACCOUNT_ID }}
-        working-directory: ${{ env.workdir }}
-        continue-on-error: true
-
       - name: Destroy resources
         id: destroy
         run: terraform destroy -auto-approve
