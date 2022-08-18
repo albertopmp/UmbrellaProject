@@ -1,6 +1,6 @@
 ## *Umbre??a Front-end*
 
-#### This docs contains the steps that I took for developing *Umbre??a*, the documentation that served as the baseline of this project and the problems that I encountered throughout the process (as well as their resolution). I decided to divide the whole explanation in different files to make them more specific.
+#### These files contain the steps that were taken during the development *Umbre??a*, the documentation that served as the baseline of this project and the problems that I encountered throughout the process (as well as their resolution). I decided to divide the whole explanation in different files to make them more specific.
 
 1. In this first step **I hosted my Angular WebApp using S3**. I created a bucket and assigned the corresponding permissions through a Bucket Policy. Then I uploaded the resulting files from executing ng build (create production files) and as a result my WebApp was accessible from `http://umbrella-project.s3-website-eu-west-1.amazonaws.com`
 
