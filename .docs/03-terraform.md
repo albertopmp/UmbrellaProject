@@ -14,6 +14,3 @@ In Terraform there are two types of files:
 Consequently, I modified the first version of this workflow to save the `terraform.tfstate` to an S3 bucket so that it could be retrieved later. **Then, for development purposes, I created a new Github Actions workflow (that coud be manually triggered) for destroying the whole infrastructure**. This workflow needs the `terraform.tfstate` so that `terraform apply -destroy` is aware of the current infrastructure and knows what it should destroy.
 
 >**NOTE: Github Actions Secrets are used to safely store and use credentials** 
-
-
-# AÑADIR DIAGRAMA

@@ -4,6 +4,11 @@
 
 I saw that many people have taken the [Cloud Resume Challenge](https://cloudresumechallenge.dev/) as a way to advance their cloud career. ***Nevertheless, I wanted to do something different and develop a project of my own, solving along the way an issue that I'd been facing since I was just a little boy: always forgetting my umbrella when it rains!***
 
-> ## Moreover, I want this project to become a tool for consolidating the knowledge that I'll acquire during future training and certifications through hands-on practice.
+> **Moreover, I want this project to become a tool for consolidating the knowledge that I'll acquire during future training and certifications through hands-on practice.**
 
-Please, check out the `.docs` directory if you want to know more about how *Umbre??a* was developed :)
+## Architecture Overview
+
+![Architecture Diagram](https://github.com/albertopmp/UmbrellaProject/blob/master/front-end/src/assets/img/about-img/architecture.png)
+
+> Please, check out the `.docs` directory if you want to know more about how *Umbre??a* was developed :)
+
