@@ -10,5 +10,7 @@ I saw that many people have taken the [Cloud Resume Challenge](https://cloudresu
 
 ![Architecture Diagram](https://github.com/albertopmp/UmbrellaProject/blob/master/front-end/src/assets/img/about-img/architecture.png)
 
+---
+
 > Please, check out the `.docs` directory if you want to know more about how *Umbre??a* was developed :)
 
