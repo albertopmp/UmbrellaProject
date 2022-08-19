@@ -55,4 +55,6 @@ Finally, all the above can be summarized with the following architecture diagram
 
 ![Architecture Diagram](https://github.com/albertopmp/UmbrellaProject/blob/master/front-end/src/assets/img/about-img/architecture.png)
 
-> Please check out `03-terraform.md` if you want to know how I migrated  my whole infrastructure to IaC with Terraform :)
+---
+
+> **Please check out `03-terraform.md` if you want to know how I migrated  my whole infrastructure to IaC with Terraform :)**
