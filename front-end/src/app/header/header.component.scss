@@ -44,7 +44,12 @@
   }
 }
 
-a img {
-  width: 20px;
-  height: 20px;
+a {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
