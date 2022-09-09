@@ -50,7 +50,8 @@ mat-sidenav-container {
   }
 
   &.mat-drawer-over {
-    background: linear-gradient(#000, #000) padding-box, linear-gradient(180deg, #7615f5 15%, #cc2bf6 55%) border-box;
+    background: linear-gradient(#000, #000) padding-box,
+      linear-gradient(180deg, #7615f5 15%, #cc2bf6 55%) border-box;
     border: 3px solid transparent;
     border-radius: global_var.$border-radius-size;
   }
@@ -130,7 +131,7 @@ mat-sidenav-container {
 
 .designation {
   margin-top: 2px;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 mat-divider {
